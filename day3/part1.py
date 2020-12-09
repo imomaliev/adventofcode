@@ -10,8 +10,8 @@ def __main__():
         mod = len(mapp[0])
         while i < len(mapp):
             r = i * right % mod
-            if mapp[i * down][r] == '#':
-                counter +=1 
+            if mapp[i * down][r] == "#":
+                counter += 1
             i += 1
 
     return counter

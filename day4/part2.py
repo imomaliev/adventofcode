@@ -1,4 +1,5 @@
 import re
+
 """
 byr (Birth Year)
 iyr (Issue Year)
@@ -20,52 +21,62 @@ ecl (Eye Color) - exactly one of: amb blu brn gry grn hzl oth.
 pid (Passport ID) - a nine-digit number, including leading zeroes.
 cid (Country ID) - ignored, missing or not.
 """
+
+
 def check_hgt(value):
-    match = re.match(r'(\d+)(in|cm)', value)
+    match = re.match(r"(\d+)(in|cm)", value)
     if match:
         length, t = match[1], match[2]
-        if ((t == 'cm' and 150 <= int(length) <= 193) or (t == 'in' and 59 <= int(length) <= 76)):
+        if (t == "cm" and 150 <= int(length) <= 193) or (
+            t == "in" and 59 <= int(length) <= 76
+        ):
             return True
 
+
 def check_hcl(value):
-    match = re.match(r'^#([a-f0-9]{6})$', value)
+    match = re.match(r"^#([a-f0-9]{6})$", value)
     if match:
         return True
+
 
 def check_pid(value):
-    match = re.match(r'^(\d{9})$', value)
+    match = re.match(r"^(\d{9})$", value)
     if match:
         return True
 
+
 checks = {
-    'byr': lambda value: 1920 <= int(value) <= 2002,
-    'iyr': lambda value: 2010 <= int(value) <= 2020,
-    'eyr': lambda value: 2020 <= int(value) <= 2030,
-    'hgt': check_hgt,
-    'hcl': check_hcl,
-    'ecl': lambda value: value in set('amb blu brn gry grn hzl oth'.split()),
-    'pid': check_pid,
-    'cid': lambda value: True,
+    "byr": lambda value: 1920 <= int(value) <= 2002,
+    "iyr": lambda value: 2010 <= int(value) <= 2020,
+    "eyr": lambda value: 2020 <= int(value) <= 2030,
+    "hgt": check_hgt,
+    "hcl": check_hcl,
+    "ecl": lambda value: value in set("amb blu brn gry grn hzl oth".split()),
+    "pid": check_pid,
+    "cid": lambda value: True,
 }
+
 
 def __main__():
     valid = 0
     with open("input.txt", "r") as f:
-        keys = set([
-        'byr',
-        'iyr',
-        'eyr',
-        'hgt',
-        'hcl',
-        'ecl',
-        'pid',
-        ])
+        keys = set(
+            [
+                "byr",
+                "iyr",
+                "eyr",
+                "hgt",
+                "hcl",
+                "ecl",
+                "pid",
+            ]
+        )
         ff = f.read()
-        for parts in ff.split('\n\n'):
+        for parts in ff.split("\n\n"):
             data = set()
             parts = parts.split()
             for part in parts:
-                key, value = part.split(':')
+                key, value = part.split(":")
                 if checks[key](value):
                     data.add(key)
 
@@ -73,6 +84,6 @@ def __main__():
                 valid += 1
         return valid
 
+
 if __name__ == "__main__":
     print(__main__())
-

@@ -6,11 +6,11 @@ def __main__():
             row, seat = boarding_pass[:7], boarding_pass[7:]
             count = 0
             for i, char in enumerate(reversed(row)):
-                if char == 'B':
+                if char == "B":
                     count += 2 ** i
             count *= 8
             for i, char in enumerate(reversed(seat)):
-                if char == 'R':
+                if char == "R":
                     count += 2 ** i
             if count > maxseat:
                 maxseat = count
@@ -19,4 +19,3 @@ def __main__():
 
 if __name__ == "__main__":
     print(__main__())
-
