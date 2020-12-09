@@ -24,18 +24,6 @@ def __main__():
                 "hcl",
                 "ecl",
                 "pid",
-                "cid",
-            ]
-        )
-        keys2 = set(
-            [
-                "byr",
-                "iyr",
-                "eyr",
-                "hgt",
-                "hcl",
-                "ecl",
-                "pid",
             ]
         )
         ff = f.read()
@@ -45,7 +33,7 @@ def __main__():
             for part in parts:
                 key, value = part.split(":")
                 data.add(key)
-            if data >= keys2:
+            if data >= keys:
                 valid += 1
         return valid
 

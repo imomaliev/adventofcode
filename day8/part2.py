@@ -29,8 +29,6 @@ def __main__():
             steps.append((instr, num))
 
         index = 0
-        visited = []
-        loop = []
         while True:
             instr, num = steps[index]
             if instr == "acc":

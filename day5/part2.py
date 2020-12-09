@@ -1,5 +1,4 @@
 def __main__():
-    maxseat = 0
     seats = set()
     with open("input.txt", "r") as f:
         for line in f.readlines():

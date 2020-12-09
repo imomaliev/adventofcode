@@ -1,6 +1,3 @@
-from itertools import combinations
-
-
 def __main__():
     with open("input.txt", "r") as f:
         numbers = []
@@ -10,7 +7,6 @@ def __main__():
             num = int(line.strip())
             numbers.append(num)
 
-        checked = set()
         start, end = 0, 2
         while end < len(numbers):
             sub = numbers[start:end]

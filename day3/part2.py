@@ -4,11 +4,8 @@ def count_slopes(right, down, mapp):
     mod = len(mapp[0])
     while i < len(mapp) and i * down < len(mapp):
         r = i * right % mod
-        try:
-            if mapp[i * down][r] == "#":
-                counter += 1
-        except:
-            breakpoint()
+        if mapp[i * down][r] == "#":
+            counter += 1
         i += 1
     return counter
 
@@ -18,8 +15,6 @@ def __main__():
         mapp = []
         for line in f.readlines():
             mapp.append(list(line.strip()))
-        right = 3
-        down = 1
         return (
             count_slopes(1, 1, mapp)
             * 173
