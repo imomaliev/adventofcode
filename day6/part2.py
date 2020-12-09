@@ -3,9 +3,9 @@ from collections import Counter
 
 def __main__():
     with open("input.txt", "r") as f:
-        ff = f.read()
+        input_file = f.read()
         res = 0
-        for group in ff.split("\n\n"):
+        for group in input_file.split("\n\n"):
             first, *rest = group.split("\n")
             keys = set(first)
             for subgroup in rest:

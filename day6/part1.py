@@ -3,10 +3,10 @@ from collections import Counter
 
 def __main__():
     with open("input.txt", "r") as f:
-        ff = f.read()
+        input_file = f.read()
         counter = Counter()
         res = 0
-        for group in ff.split("\n\n"):
+        for group in input_file.split("\n\n"):
             group = group.replace("\n", "")
             counter = Counter(group)
             res += len(counter.keys())

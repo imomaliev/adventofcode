@@ -18,6 +18,7 @@ def __main__():
                         break
                 else:
                     return num
+    raise RuntimeError
 
 
 if __name__ == "__main__":

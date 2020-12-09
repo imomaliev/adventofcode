@@ -26,8 +26,8 @@ def __main__():
                 "pid",
             ]
         )
-        ff = f.read()
-        for parts in ff.split("\n\n"):
+        input_file = f.read()
+        for parts in input_file.split("\n\n"):
             data = set()
             parts = parts.split()
             for part in parts:

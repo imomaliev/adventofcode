@@ -3,9 +3,9 @@ def __main__():
     with open("input.txt", "r") as f:
         for line in f.readlines():
             curr = int(line)
-            for i1, expense1 in enumerate(expenses):
-                for i2, expense2 in enumerate(expenses):
-                    if i1 != i2:
+            for i, expense1 in enumerate(expenses):
+                for j, expense2 in enumerate(expenses):
+                    if i != j:
                         if curr + expense1 + expense2 == 2020:
                             return curr * expense1 * expense2
             expenses.append(curr)

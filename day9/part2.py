@@ -1,8 +1,10 @@
+NUM = 14144619
+
+
 def __main__():
     with open("input.txt", "r") as f:
         numbers = []
         sub = []
-        NUM = num = 14144619
         for line in f.readlines():
             num = int(line.strip())
             numbers.append(num)

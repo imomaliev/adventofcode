@@ -1,5 +1,3 @@
-import re
-
 """
 byr (Birth Year)
 iyr (Issue Year)
@@ -22,27 +20,32 @@ pid (Passport ID) - a nine-digit number, including leading zeroes.
 cid (Country ID) - ignored, missing or not.
 """
 
+import re
+
 
 def check_hgt(value):
     match = re.match(r"(\d+)(in|cm)", value)
     if match:
-        length, t = match[1], match[2]
-        if (t == "cm" and 150 <= int(length) <= 193) or (
-            t == "in" and 59 <= int(length) <= 76
+        length, unit = match[1], match[2]
+        if (unit == "cm" and 150 <= int(length) <= 193) or (
+            unit == "in" and 59 <= int(length) <= 76
         ):
             return True
+    raise RuntimeError
 
 
 def check_hcl(value):
     match = re.match(r"^#([a-f0-9]{6})$", value)
     if match:
         return True
+    raise RuntimeError
 
 
 def check_pid(value):
     match = re.match(r"^(\d{9})$", value)
     if match:
         return True
+    raise RuntimeError
 
 
 checks = {
@@ -71,8 +74,8 @@ def __main__():
                 "pid",
             ]
         )
-        ff = f.read()
-        for parts in ff.split("\n\n"):
+        input_file = f.read()
+        for parts in input_file.split("\n\n"):
             data = set()
             parts = parts.split()
             for part in parts:

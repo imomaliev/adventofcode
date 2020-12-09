@@ -19,6 +19,7 @@ def __main__():
         if seat - 1 != prev:
             return seat - 1
         prev = seat
+    raise RuntimeError
 
 
 if __name__ == "__main__":
