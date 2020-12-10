@@ -1,3 +1,7 @@
+import sys
+import pytest
+
+
 def count_slopes(right, down, mapp):
     i = 0
     counter = 0
@@ -10,19 +14,47 @@ def count_slopes(right, down, mapp):
     return counter
 
 
-def __main__():
-    with open("input.txt", "r") as f:
-        mapp = []
-        for line in f.readlines():
-            mapp.append(list(line.strip()))
-        return (
-            count_slopes(1, 1, mapp)
-            * 173
-            * count_slopes(5, 1, mapp)
-            * count_slopes(7, 1, mapp)
-            * count_slopes(1, 2, mapp)
-        )
+def solve(input_s):
+    mapp = []
+    for line in input_s.splitlines():
+        mapp.append(list(line.strip()))
+    return (
+        count_slopes(1, 1, mapp)
+        * count_slopes(3, 1, mapp)
+        * count_slopes(5, 1, mapp)
+        * count_slopes(7, 1, mapp)
+        * count_slopes(1, 2, mapp)
+    )
+
+
+INPUT_S = """\
+..##.......
+#...#...#..
+.#....#..#.
+..#.#...#.#
+.#...##..#.
+..#.##.....
+.#.#.#....#
+.#........#
+#.##...#...
+#...##....#
+.#..#...#.#
+"""
+
+
+@pytest.mark.parametrize(
+    ("input_s", "expected"),
+    ((INPUT_S, 336),),
+)
+def test(input_s, expected):
+    assert solve(input_s) == expected
+
+
+def main():
+    with open("input.txt") as f:
+        print(solve(f.read()))
+    return 0
 
 
 if __name__ == "__main__":
-    print(__main__())
+    sys.exit(main())
