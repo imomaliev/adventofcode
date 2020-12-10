@@ -10,33 +10,65 @@ cid (Country ID)
 
 """
 
+import sys
+import pytest
 
-def __main__():
+
+def solve(input_s):
     valid = 0
-    with open("input.txt", "r") as f:
+    data = set()
+    keys = set(
+        [
+            "byr",
+            "iyr",
+            "eyr",
+            "hgt",
+            "hcl",
+            "ecl",
+            "pid",
+        ]
+    )
+    for parts in input_s.split("\n\n"):
         data = set()
-        keys = set(
-            [
-                "byr",
-                "iyr",
-                "eyr",
-                "hgt",
-                "hcl",
-                "ecl",
-                "pid",
-            ]
-        )
-        input_file = f.read()
-        for parts in input_file.split("\n\n"):
-            data = set()
-            parts = parts.split()
-            for part in parts:
-                key, value = part.split(":")
-                data.add(key)
-            if data >= keys:
-                valid += 1
-        return valid
+        parts = parts.split()
+        for part in parts:
+            key, value = part.split(":")
+            data.add(key)
+        if data >= keys:
+            valid += 1
+    return valid
+
+
+INPUT_S = """\
+ecl:gry pid:860033327 eyr:2020 hcl:#fffffd
+byr:1937 iyr:2017 cid:147 hgt:183cm
+
+iyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884
+hcl:#cfa07d byr:1929
+
+hcl:#ae17e1 iyr:2013
+eyr:2024
+ecl:brn pid:760753108 byr:1931
+hgt:179cm
+
+hcl:#cfa07d eyr:2025 pid:166559648
+iyr:2011 ecl:brn hgt:59in
+"""
+
+
+@pytest.mark.parametrize(
+    ("input_s", "expected"),
+    ((INPUT_S, 2),),
+)
+def test(input_s, expected):
+    assert solve(input_s) == expected
+
+
+def main():
+    with open("input.txt") as f:
+        print(solve(f.read()))
+    return 0
 
 
 if __name__ == "__main__":
-    print(__main__())
+    sys.exit(main())
