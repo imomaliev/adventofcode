@@ -43,21 +43,5 @@ disable = [
     # project
     'duplicate-code',
     'no-else-return',
-]
-
-[tool.pylint.basic]
-# Good variable names which should always be accepted, separated by a comma.
-good-names = [
-    'i',
-    'j',
-    'k',
-    'ex',
-    'Run',
-    '_',
-    # project
-    # for file names
-    'f',
-    'n',
-    'm',
-    'd',
+    'invalid-name',
 ]
