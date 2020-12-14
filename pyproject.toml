@@ -44,4 +44,5 @@ disable = [
     'duplicate-code',
     'no-else-return',
     'invalid-name',
+    'no-else-continue',
 ]
