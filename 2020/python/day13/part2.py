@@ -5,7 +5,7 @@ import pytest
 def crt(pairs):
     """https://en.wikipedia.org/wiki/Chinese_remainder_theorem"""
     M = 1
-    for x, mx in pairs:
+    for __, mx in pairs:
         M *= mx
     total = 0
     for x, mx in pairs:
