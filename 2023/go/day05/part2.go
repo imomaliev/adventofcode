@@ -26,8 +26,8 @@ func Solve(scanner *bufio.Scanner) int {
 }
 
 func main() {
-	log.SetPrefix("day00:part1: ")
-	file, err := os.Open("../../input/day00.txt")
+	log.SetPrefix("day05:part1: ")
+	file, err := os.Open("../../input/day05.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

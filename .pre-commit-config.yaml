@@ -46,4 +46,3 @@ repos:
       rev: master
       hooks:
           - id: go-fmt
-            exclude: ^.*day00\/.*go$

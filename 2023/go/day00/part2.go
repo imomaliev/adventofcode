@@ -22,11 +22,12 @@ func Solve(scanner *bufio.Scanner) int {
 	if err = scanner.Err(); err != nil {
 		log.Fatalf("Scanner error: %v", err)
 	}
+	return 0
 }
 
 func main() {
-	log.SetPrefix("day01:part1: ")
-	file, err := os.Open("../../input/day01.txt")
+	log.SetPrefix("day00:part2: ")
+	file, err := os.Open("../../input/day00.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -14,7 +14,7 @@ var tests = []struct {
 	input    string
 	expected int
 }{
-	{INPUT_S, ...},
+	{INPUT_S, 0},
 }
 
 // TestHelloName calls greetings.Hello with a name, checking
