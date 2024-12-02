@@ -8,13 +8,19 @@ import (
 )
 
 var INPUT_S string = `
+3   4
+4   3
+2   5
+1   3
+3   9
+3   3
 `
 
 var tests = []struct {
 	input    string
 	expected int
 }{
-	{INPUT_S, ...},
+	{INPUT_S, 31},
 }
 
 // TestHelloName calls greetings.Hello with a name, checking
