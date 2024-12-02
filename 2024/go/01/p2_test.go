@@ -8,19 +8,26 @@ import (
 )
 
 var INPUT_S string = `
+<<<<<<< HEAD
 3   4
 4   3
 2   5
 1   3
 3   9
 3   3
+=======
+>>>>>>> 062e609 (2024: day1 part1)
 `
 
 var tests = []struct {
 	input    string
 	expected int
 }{
+<<<<<<< HEAD
 	{INPUT_S, 31},
+=======
+	{INPUT_S, ...},
+>>>>>>> 062e609 (2024: day1 part1)
 }
 
 // TestHelloName calls greetings.Hello with a name, checking
