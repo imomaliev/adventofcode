@@ -11,10 +11,10 @@ import (
 )
 
 func AbsInt(x, y int) int {
-   if x < y {
-      return y - x
-   }
-   return x - y
+	if x < y {
+		return y - x
+	}
+	return x - y
 }
 
 func Solve(scanner *bufio.Scanner) int {
@@ -41,7 +41,7 @@ func Solve(scanner *bufio.Scanner) int {
 
 	var result = 0
 	for idx, val := range left {
-		result = result + AbsInt(val, right[idx])
+		result += AbsInt(val, right[idx])
 	}
 	if err = scanner.Err(); err != nil {
 		log.Fatalf("Scanner error: %v", err)
