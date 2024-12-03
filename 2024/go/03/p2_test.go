@@ -8,13 +8,14 @@ import (
 )
 
 var INPUT_S string = `
+xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))
 `
 
 var tests = []struct {
 	input    string
 	expected int
 }{
-	{INPUT_S, ...},
+	{INPUT_S, 48},
 }
 
 // TestHelloName calls greetings.Hello with a name, checking
