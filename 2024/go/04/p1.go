@@ -5,39 +5,41 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"regexp"
 	"slices"
+	"strings"
 )
 
+func Find(s string) int {
+	return strings.Count(s, "XMAS") + strings.Count(s, "SAMX")
+}
 
 func Solve(scanner *bufio.Scanner) int {
 	var matrix [][]byte
 	var err error
 	var result = 0
 	var vertical, diagonal, rdiagonal string
-	re := regexp.MustCompile(`(XMAS|SAMX)`)
 	var rowLength = 0
 	for scanner.Scan() {
 		row := scanner.Text()
 		rowLength = len(row)
 		matrix = append(matrix, []byte(row))
-		result += len(re.FindAll([]byte(row), -1))
+		result += Find(row)
 	}
 	var colHeight = len(matrix)
 	// count vertical
-	for i:=0; i<rowLength; i++ {
+	for i := 0; i < rowLength; i++ {
 		vertical = ""
-		for j:=0; j<colHeight; j++ {
+		for j := 0; j < colHeight; j++ {
 			vertical += string(matrix[j][i])
 		}
-		result += len(re.FindAll([]byte(vertical), -1))
+		result += Find(vertical)
 	}
 
 	// count diagonal
 	var visited [][2]int
-	x:=0
-	y:=0
-	cursor:=0
+	x := 0
+	y := 0
+	cursor := 0
 	for cursor < colHeight {
 		diagonal = ""
 		for x < colHeight && y < rowLength {
@@ -48,14 +50,14 @@ func Solve(scanner *bufio.Scanner) int {
 			x++
 			y++
 		}
-		result += len(re.FindAll([]byte(diagonal), -1))
+		result += Find(diagonal)
 		cursor++
-		x=cursor
-		y=0
+		x = cursor
+		y = 0
 	}
-	x=0
-	y=0
-	cursor=0
+	x = 0
+	y = 0
+	cursor = 0
 	for cursor < rowLength {
 		diagonal = ""
 		for x < colHeight && y < rowLength {
@@ -66,17 +68,17 @@ func Solve(scanner *bufio.Scanner) int {
 			x++
 			y++
 		}
-		result += len(re.FindAll([]byte(diagonal), -1))
+		result += Find(diagonal)
 		cursor++
-		y=cursor
-		x=0
+		y = cursor
+		x = 0
 	}
 
 	// count rdiagonal
 	var rvisited [][2]int
-	x=0
-	y=rowLength - 1
-	cursor=0
+	x = 0
+	y = rowLength - 1
+	cursor = 0
 	for cursor < colHeight {
 		rdiagonal = ""
 		for x < colHeight && y >= 0 {
@@ -87,14 +89,14 @@ func Solve(scanner *bufio.Scanner) int {
 			x++
 			y--
 		}
-		result += len(re.FindAll([]byte(rdiagonal), -1))
+		result += Find(rdiagonal)
 		cursor++
-		x=cursor
-		y=rowLength - 1
+		x = cursor
+		y = rowLength - 1
 	}
-	x=0
-	y=rowLength - 1
-	cursor=0
+	x = 0
+	y = rowLength - 1
+	cursor = 0
 	for cursor < rowLength {
 		rdiagonal = ""
 		for x < colHeight && y >= 0 {
@@ -105,10 +107,10 @@ func Solve(scanner *bufio.Scanner) int {
 			x++
 			y--
 		}
-		result += len(re.FindAll([]byte(rdiagonal), -1))
+		result += Find(rdiagonal)
 		cursor++
-		y=rowLength - cursor
-		x=0
+		y = rowLength - cursor
+		x = 0
 	}
 
 	if err = scanner.Err(); err != nil {
@@ -120,7 +122,7 @@ func Solve(scanner *bufio.Scanner) int {
 
 func main() {
 	log.SetPrefix("day00:part1: ")
-	file, err := os.Open("../../input/00.txt")
+	file, err := os.Open("../../input/04.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
