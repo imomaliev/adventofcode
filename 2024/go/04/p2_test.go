@@ -8,13 +8,30 @@ import (
 )
 
 var INPUT_S string = `
+M.S
+.A.
+M.S
+`
+
+var INPUT_S2 string = `
+.M.S......
+..A..MSMS.
+.M.S.MAA..
+..A.ASMSM.
+.M.S.M....
+..........
+S.S.S.S.S.
+.A.A.A.A..
+M.M.M.M.M.
+..........
 `
 
 var tests = []struct {
 	input    string
 	expected int
 }{
-	{INPUT_S, ...},
+	{INPUT_S, 1},
+	{INPUT_S2, 9},
 }
 
 // TestHelloName calls greetings.Hello with a name, checking
