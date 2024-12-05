@@ -11,46 +11,18 @@ import (
 )
 
 func FixOrder(rules map[int][]int, update []int) []int {
-	var ejected []int
-	var correct []int
-	for _, val := range update {
-		correct = append(correct, val)
-	}
-	for i, page := range update {
-		for j := 0; j < len(update); j++ {
-			if j < i && !slices.Contains(rules[update[j]], page) {
-				if !slices.Contains(ejected, page) {
-					ejected = append(ejected, page)
-				}
-				var newCorrect []int
-				for _, val := range correct {
-					if val != page {
-						newCorrect = append(newCorrect, val)
-					}
-				}
-				correct = newCorrect
-				break
+	sorted := false
+	for !sorted {
+		sorted = true
+		for i, page := range update {
+			if i+1 < len(update) && !slices.Contains(rules[page], update[i+1]) {
+				sorted = false
+				update[i], update[i+1] = update[i+1], update[i]
 			}
-			if j > i && !slices.Contains(rules[page], update[j]) {
-				if !slices.Contains(ejected, page) {
-					ejected = append(ejected, page)
-				}
-				var newCorrect []int
-				for _, val := range correct {
-					if val != page {
-						newCorrect = append(newCorrect, val)
-					}
-				}
-				correct = newCorrect
-				break
-			}
-			// if !slices.Contains(correct, page) {
-			// 	correct = append(correct, page)
-			// }
 		}
 	}
-	fmt.Println(update, correct, ejected)
-	return correct
+
+	return update
 }
 
 func Solve(scanner *bufio.Scanner) int {
@@ -110,7 +82,7 @@ func Solve(scanner *bufio.Scanner) int {
 		}
 		if !correct {
 			update = FixOrder(rules, update)
-			// result += update[len(update)/2]
+			result += update[len(update)/2]
 		}
 	}
 
